@@ -7,31 +7,26 @@ volumes:
 
 services:
   db:
-    container_name: postgre_db
-    image: postgres:13
+    image: postgres:13.10
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
-    container_name: backend
     build: ./backend/
     env_file: .env
     volumes:
-      - static:/backend_static
-      - media:/media
+      - static:/backend_static/
+      - media:/app/media/
   frontend:
-    container_name: frontend
-    env_file: .env
     build: ./frontend/
-    command: cp -r /app/build/. /static/
-    volumes:
-      - static:/static
-  gateway:
-    container_name: nginx
-    build: ./nginx/
     env_file: .env
-    ports:
-      - 9000:80
+    command: cp -r /app/build/. /staticfiles/
     volumes:
-      - static:/static
-      - media:/media
+      - static:/staticfiles/
+  gateway:
+    build: ./nginx/
+    ports:
+      - '9000:80'
+    volumes:
+      - static:/app/static/
+      - media:/app/media/
