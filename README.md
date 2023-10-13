@@ -1,4 +1,5 @@
 #  Проект «Kittygram»
+
 [![Main Kittygram workflow](https://github.com/maximkidalov/kittygram_final/actions/workflows/main.yml/badge.svg)](https://github.com/maximkidalov/kittygram_final/actions/workflows/main.yml)
 
 ## Описание проекта:  
